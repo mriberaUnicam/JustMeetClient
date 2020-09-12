@@ -1,10 +1,10 @@
 package main.interfaces;
 
-import java.sql.Time;
-import java.time.LocalDateTime;
-import java.util.Date;
+import main.classes.User;
 
-public interface Event {
+import java.time.LocalDateTime;
+
+public interface EventBase {
 
     /**
      * Tipo di evento generico
@@ -22,6 +22,20 @@ public interface Event {
     public static int STUDY_TYPE = 2;
 
     /**
+     * Ritorna l'id dell'evento
+     *
+     * @return id
+     */
+    public int getId();
+
+    /**
+     * Imposta l'id dellevento
+     *
+     * @param id
+     */
+    public void setId(int id);
+
+    /**
      * Assegna all'evento un determinato tipo
      *
      * @param type
@@ -35,13 +49,6 @@ public interface Event {
      * @return tipo di evento
      */
     public int getType();
-
-    /**
-     * Restituisce l'evento
-     *
-     * @return l'evento in questione
-     */
-    public Event getEvent();
 
     /**
      * Imposta il nome dell'evento
@@ -62,14 +69,14 @@ public interface Event {
      *
      * @param username
      */
-    public void setCreator(String username);
+    public void setCreator(User user);
 
     /**
      * Restituisce il nome del creatore dell'evento
      *
      * @return nome del creatore dell'evento
      */
-    public String getCreator();
+    public User getCreator();
 
     /**
      * Imposta data ed orario dell'evento
@@ -99,4 +106,17 @@ public interface Event {
      */
     public int getNPartecipanti();
 
+    /**
+     * Imposta un valore per la recenzione dell'evento
+     *
+     * @param  review
+     */
+    public void setReview(double review);
+
+    /**
+     * Ritorna il valore della recenzione dell'evento
+     *
+     * @return review
+     */
+    public double getReview();
 }
