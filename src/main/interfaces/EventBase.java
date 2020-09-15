@@ -7,21 +7,6 @@ import java.time.LocalDateTime;
 public interface EventBase {
 
     /**
-     * Tipo di evento generico
-     */
-    public static int GENERAL_TYPE = 0;
-
-    /**
-     * Tipo di evento giocabile
-     */
-    public static int GAME_TYPE = 1;
-
-    /**
-     * Tipo di evento di studio
-     */
-    public static int STUDY_TYPE = 2;
-
-    /**
      * Ritorna l'id dell'evento
      *
      * @return id
@@ -41,14 +26,14 @@ public interface EventBase {
      * @param type
      *              tipo dell'evento
      */
-    public void setType(int type);
+    public void setType(String type);
 
     /**
      * Restituisce il tipo di evento
      *
      * @return tipo di evento
      */
-    public int getType();
+    public String getType();
 
     /**
      * Imposta il nome dell'evento
@@ -65,9 +50,23 @@ public interface EventBase {
     public String getTitle();
 
     /**
+     * Imposta il nome dell'evento
+     *
+     * @param title
+     */
+    public void setDescription(String description);
+
+    /**
+     * Restituisce il nome dell'evento
+     *
+     * @return title
+     */
+    public String getDescription();
+
+    /**
      * Imposta il nome dell creatore dell'evento
      *
-     * @param username
+     * @param user
      */
     public void setCreator(User user);
 
@@ -93,30 +92,37 @@ public interface EventBase {
     public LocalDateTime getDateTime();
 
     /**
-     * Imposta il numero massimo di partecipanti che si possono iscrivere all'evento
-     *
-     * @param nPartecipanti
-     */
-    public void setNPartecipanti(int nPartecipanti);
-
-    /**
-     * Ritorna il numero massimo dei partecipanti che si possono iscrivere all'evento
+     * Ritorna il numero dei partecipanti che sono inscritti all'evento
      *
      * @return ndei partecipanti
      */
     public int getNPartecipanti();
 
     /**
+     * Imposta il numero massimo di partecipanti che si possono iscrivere all'evento
+     *
+     * @param nPartecipantiMax
+     */
+    public void setNPartecipantiMax(int nPartecipantiMax);
+
+    /**
+     * Ritorna il numero massimo dei partecipanti che si possono iscrivere all'evento
+     *
+     * @return ndei partecipanti
+     */
+    public int getNPartecipantiMax();
+
+    /**
      * Imposta un valore per la recenzione dell'evento
      *
      * @param  review
      */
-    public void setReview(double review);
+    public void setActive(int active);
 
     /**
      * Ritorna il valore della recenzione dell'evento
      *
      * @return review
      */
-    public double getReview();
+    public int getActive();
 }
