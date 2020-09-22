@@ -1,7 +1,6 @@
-package main.interfaces;
+package interfaces;
 
-import main.classes.User;
-
+import classes.User;
 import java.time.LocalDateTime;
 
 public interface EventBase {
@@ -115,7 +114,7 @@ public interface EventBase {
     /**
      * Imposta un valore per la recenzione dell'evento
      *
-     * @param  review
+     * @param  active
      */
     public void setActive(int active);
 

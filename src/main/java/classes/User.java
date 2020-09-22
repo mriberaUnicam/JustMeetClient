@@ -1,10 +1,9 @@
-package main.classes;
+package classes;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.time.LocalDateTime;
-import java.util.concurrent.ExecutionException;
 
 public class User {
 
@@ -14,6 +13,7 @@ public class User {
     private String surname;
     private String email;
     private String password;
+    private int moderatore;
 
     public User(){
         id = 0;
@@ -22,15 +22,17 @@ public class User {
         surname = null;
         email = null;
         password = null;
+        moderatore = 0;
     }
 
-    public User(int id, String username, String name, String surname, String email, String password) {
+    public User(int id, String username, String name, String surname, String email, String password, int moderatore) {
         this.id = id;
         this.username = username;
         this.name = name;
         this.surname = surname;
         this.email = email;
         this.password = password;
+        this.moderatore = moderatore;
     }
 
     public String getEmail() {
@@ -81,6 +83,9 @@ public class User {
         return this.id;
     }
 
+    public boolean isMod(){
+        return this.moderatore == 1;
+    }
 
     public int putUser(Connection c) {
         Statement stmt = null;
@@ -111,7 +116,8 @@ public class User {
                         rs.getString("name"),
                         rs.getString("surname"),
                         rs.getString("email"),
-                        rs.getString("password"));
+                        rs.getString("password"),
+                        rs.getInt("moderatore"));
             }
             rs.close();
             stmt.close();

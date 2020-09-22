@@ -1,13 +1,14 @@
-package main;
+import classes.Event;
+import classes.User;
+import utils.DatabaseConnection;
+import utils.TimeThread;
 
-import main.classes.Event;
-import main.classes.User;
-import main.utils.DatabaseConnection;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.Timer;
 
 public class main {
 
@@ -20,6 +21,9 @@ public class main {
 
         int choise = 0;
         User logged = null;
+
+        Timer timeThread = new Timer();
+        timeThread.schedule(new TimeThread(), 0, 60000);
 
         while (choise != 3) {
             while (logged == null) {
@@ -87,6 +91,9 @@ public class main {
                 System.out.println("5 - Modifica evento");
                 System.out.println("6 - Elimina evento");
                 System.out.println("7 - Effettua il logout");
+                if(logged.isMod()){
+                    System.out.println("8 - Controllo Moderatore");
+                }
                 System.out.println("Scegli: ");
                 choise = in.nextInt();
                 switch (choise) {
@@ -286,6 +293,21 @@ public class main {
                         break;
                     case 7:
                         logged = null;
+                        break;
+                    case 8:
+                        if(logged.isMod()){
+                            System.out.println("Elimina evento");
+                            evento = new Event();
+
+                            rs = evento.getAllActiveEvents(db.getConnection());
+                            rs.forEach(event -> {
+                                System.out.println("" + event.getId() + " - " + event.getTitle());
+                            });
+                            System.out.println("Scegli l'id dell'evento da eliminare: ");
+                            evento.deleteEvent(db.getConnection(), in.nextInt());
+                        }else{
+                            System.out.println("Opzione errata");
+                        }
                         break;
                     default:
                         System.out.println("Opzione errata");

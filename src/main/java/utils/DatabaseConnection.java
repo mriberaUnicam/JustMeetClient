@@ -1,12 +1,10 @@
-package main.utils;
+package utils;
 
-import main.classes.User;
 import java.sql.*;
 
 public class DatabaseConnection {
     Connection c = null;
     Statement stmt = null;
-
 
     public DatabaseConnection() {
         try {
@@ -42,7 +40,8 @@ public class DatabaseConnection {
                     "name VARCHAR(255) NOT NULL," +
                     "surname VARCHAR(255) NOT NULL," +
                     "email VARCHAR(255) NOT NULL," +
-                    "password VARCHAR(255) NOT NULL);";
+                    "password VARCHAR(255) NOT NULL," +
+                    "moderatore INT DEFAULT 0);";
             stmt.executeUpdate(sql);
             //Create event table
             sql = "CREATE TABLE IF NOT EXISTS events"+
@@ -73,6 +72,11 @@ public class DatabaseConnection {
                     "rating FLOAT," +
                     "FOREIGN KEY(userId) REFERENCES users(id)," +
                     "FOREIGN KEY(eventId) REFERENCES events(id));";
+            stmt.executeUpdate(sql);
+            stmt.close();
+            sql = "CREATE TABLE IF NOT EXISTS event_type" +
+                    "(id INTEGER PRIMARY KEY AUTOINCREMENT," +
+                    "event_type VARCHAR(255) NOT NULL);";
             stmt.executeUpdate(sql);
             stmt.close();
             c.commit();
