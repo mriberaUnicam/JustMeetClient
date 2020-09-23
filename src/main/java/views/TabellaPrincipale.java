@@ -50,7 +50,11 @@ public class TabellaPrincipale{
 		column3.setCellValueFactory(param -> new SimpleStringProperty(param.getValue().getDateTime().toString().replace("T", " ")));
 		column3.setPrefWidth(250);
 
-		table.getColumns().addAll(column1, column2, column3);
+		TableColumn<Event, String> column4 = new TableColumn<>("Partecipanti");
+		column4.setCellValueFactory(param -> new SimpleStringProperty(param.getValue().getNPartecipanti()+"/"+param.getValue().getNPartecipantiMax()));
+		column4.setPrefWidth(250);
+
+		table.getColumns().addAll(column1, column2, column3, column4);
 
 		return table;
 	}
@@ -65,7 +69,7 @@ public class TabellaPrincipale{
 				table.setRowFactory(tv -> {
 					TableRow<Event> row = new TableRow<>();
 					row.setOnMouseClicked(event -> {
-						Boolean answer = ConfirmBox.display(row.getItem().getTitle(), "Ti vuoi registrare al seguente evento delle ore "+row.getItem().getDateTime().toString().replace("T", " "));
+						Boolean answer = ConfirmBox.display(row.getItem().getTitle(), "Ti vuoi registrare al seguente evento delle ore "+row.getItem().getDateTime().toString().replace("T", " ")+"\n\nDESCRIZIONE\n\n"+row.getItem().getDescription());
 						if(answer){
 							logged.userJoinEvent(new DatabaseConnection().getConnection(), row.getItem());
 							data = row.getItem().getAvailableEvents(new DatabaseConnection().getConnection(), logged);

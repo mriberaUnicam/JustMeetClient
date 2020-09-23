@@ -34,7 +34,6 @@ public class Main extends Application {
 	Button logout;
 	Button ritirati;
 	Button vota;
-	Button proprietario;
 	Button partecipante;
 	
 	Stage window;
@@ -161,9 +160,6 @@ public class Main extends Application {
 
 		partecipante = new Button("Eventi a cui si partecipa");
 		partecipante.setOnAction(e ->Partecipante.display(centerBox, utenteLoggato.getUsername()));
-		
-		proprietario = new Button("Eventi creati");
-		
 		topMenu.getChildren().addAll(cerca, crea, modifica, elimina, partecipa, ritirati, vota);
 		
 		HBox botMenu = new HBox();

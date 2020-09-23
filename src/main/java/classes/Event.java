@@ -161,6 +161,8 @@ public class Event implements EventBase {
             int id = stmt.getGeneratedKeys().getInt(1);
             stmt.close();
             c.commit();
+            this.setId(id);
+            creator.userJoinEvent(c, this);
             return id;
         }catch (Exception e) {
             System.out.println(e.getClass().getName() + ": "+ e.getMessage());
