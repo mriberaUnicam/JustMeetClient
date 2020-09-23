@@ -158,8 +158,6 @@ public class Main extends Application {
 					centerBox.getChildren().add(new TabellaPrincipale().display(new Event().getUserPastEvents(new DatabaseConnection().getConnection(), utenteLoggato), utenteLoggato, 6));
 				});
 
-		partecipante = new Button("Eventi a cui si partecipa");
-		partecipante.setOnAction(e ->Partecipante.display(centerBox, utenteLoggato.getUsername()));
 		topMenu.getChildren().addAll(cerca, crea, modifica, elimina, partecipa, ritirati, vota);
 		
 		HBox botMenu = new HBox();
