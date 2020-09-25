@@ -47,14 +47,15 @@ public class DatabaseConnection {
             sql = "CREATE TABLE IF NOT EXISTS events"+
                     "(id INTEGER PRIMARY KEY AUTOINCREMENT," +
                     "creatorId INT NOT NULL," +
-                    "eventType VARCHAR(255) NOT NULL," +
+                    "eventType INT NOT NULL," +
                     "title VARCHAR(255) NOT NULL," +
                     "description VARCHAR(255) NOT NULL," +
                     "dateTime VARCHAR(255) NOT NULL," +
                     "nPartecipantiMax INT NOT NULL," +
                     "nPartecipanti INT DEFAULT 0," +
                     "active INT DEFAULT 1, " +
-                    "FOREIGN KEY(creatorId) REFERENCES users(id));";
+                    "FOREIGN KEY(creatorId) REFERENCES users(id)," +
+                    "FOREIGN KEY(eventType) REFERENCES event_type(id));";
             stmt.executeUpdate(sql);
             sql = "CREATE TABLE IF NOT EXISTS user_event"+
                     "(id INTEGER PRIMARY KEY AUTOINCREMENT," +

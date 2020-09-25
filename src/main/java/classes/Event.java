@@ -437,7 +437,7 @@ public class Event implements EventBase {
             String sql = "SELECT * FROM event_type;";
             ResultSet rs = stmt.executeQuery(sql);
             while (rs.next()){
-                eventType.add(rs.getString("event_type"));
+                eventType.add(rs.getString("id") + " - " + rs.getString("event_type"));
             }
             rs.close();
             stmt.close();

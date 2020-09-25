@@ -76,7 +76,7 @@ public class CreaBox {
 			if(dateTimePicker.getDateTimeValue().compareTo(LocalDateTime.now()) > 0){
 				Event evento = new Event();
 				evento.setTitle(titolo.getText());
-				evento.setType(tipo.getSelectionModel().getSelectedItem().toString());
+				evento.setType(tipo.getSelectionModel().getSelectedItem().toString().split(" - ")[0]);
 				evento.setDescription(descrizione.getText());
 				evento.setDateTime(dateTimePicker.getDateTimeValue());
 				evento.setNPartecipantiMax(Integer.parseInt(partecipanti.getText()));

@@ -54,7 +54,7 @@ public class CercaBox {
 			Event evento = new Event();
 			evento.setTitle(titolo.getText());
 			if(tipo.getValue()!=null) {
-				evento.setType(tipo.getValue().toString());
+				evento.setType(tipo.getValue().toString().split(" - ")[0]);
 			}else{
 				evento.setType("");
 			}
